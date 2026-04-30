@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDG on Campus - Workshop Registration</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/verify.css">
+    <link rel="stylesheet" href="assets/css/registration.css">
+    <link rel="stylesheet" href="assets/css/payment.css">
+    <link rel="stylesheet" href="assets/css/success.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- Screen 01: Verify Phone -->
+        <div id="screen-verify" class="screen-card active">
+            <div class="step-label">01 VERIFY PHONE</div>
+            
+            <h1 class="screen-heading">Let's get started</h1>
+            <p class="screen-subtext">Enter your phone number to verify your registration.</p>
+            
+            <div class="form-group">
+                <div class="phone-input-group">
+                    <select class="country-code" id="country-code">
+                        <option value="+91">+91</option>
+                    </select>
+                    <input type="tel" id="phone-input" class="phone-input" placeholder="98765 43210" maxlength="10">
+                </div>
+            </div>
+            
+            <button class="gold-button" id="verify-btn">
+                <span>Verify Now</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <div class="privacy-text">
+                <i data-lucide="lock" class="lock-icon"></i>
+                <span>We'll never share your data with anyone.</span>
+            </div>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 02: Not Registered -->
+        <div id="screen-not-registered" class="screen-card">
+            <div class="step-label">02 NOT REGISTERED</div>
+            
+            <div class="status-icon error">
+                <i data-lucide="user-x"></i>
+            </div>
+            
+            <h1 class="screen-heading">You're not registered</h1>
+            <p class="screen-subtext">Looks like you're not registered for the event yet.</p>
+            
+            <button class="gold-button" id="register-now-btn">
+                <span>Register Now</span>
+                <i data-lucide="external-link"></i>
+            </button>
+            
+            <button class="ghost-button" id="try-different-btn">
+                Try a different number
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 03: Registration Found -->
+        <div id="screen-registration" class="screen-card">
+            <div class="step-label">03 REGISTRATION FOUND</div>
+            
+            <div class="status-icon success">
+                <i data-lucide="user-check"></i>
+            </div>
+            
+            <h1 class="screen-heading">Welcome back!</h1>
+            <p class="screen-subtext">You are registered for the following workshop(s)</p>
+            
+            <div class="workshop-chips" id="workshop-chips"></div>
+            
+            <div class="glass-card user-details" id="user-details"></div>
+            
+            <div id="already-paid-notice" class="success-notice" style="display: none;">
+                <i data-lucide="check-circle"></i>
+                <span>Already paid for all registered workshops!</span>
+            </div>
+            
+            <button class="gold-button" id="view-payment-btn">
+                <span>View Payment Options</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 04: Select Payment Option -->
+        <div id="screen-select-payment" class="screen-card">
+            <button class="back-link" id="back-to-details">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Details</span>
+            </button>
+            
+            <div class="step-label">04 SELECT PAYMENT OPTION</div>
+            
+            <h1 class="screen-heading">Choose a payment option</h1>
+            <p class="screen-subtext">Select the workshop(s) you want to pay for.</p>
+            
+            <div class="payment-options" id="payment-options"></div>
+            
+            <button class="gold-button" id="proceed-to-pay-btn" disabled>
+                <span>Proceed to Pay</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 05: Payment -->
+        <div id="screen-payment" class="screen-card">
+            <button class="back-link" id="back-to-workshop">
+                <i data-lucide="arrow-left"></i>
+                <span>Back to Workshop Selection</span>
+            </button>
+            
+            <div class="step-label">05 PAYMENT</div>
+            
+            <h1 class="screen-heading">Complete your payment</h1>
+            <p class="screen-subtext">Scan the QR code to pay via BharatPe</p>
+            
+            <div class="qr-container">
+                <img src="assets/images/payment-qr.png" alt="Payment QR Code" class="qr-image">
+            </div>
+            
+            <div class="glass-card payment-summary" id="payment-summary"></div>
+            
+            <div class="form-group">
+                <label for="utr-input">Enter UTR / Transaction ID</label>
+                <input type="text" id="utr-input" class="text-input" placeholder="Enter UTR (e.g. 123456789012)">
+            </div>
+            
+            <button class="gold-button" id="verify-payment-btn">
+                <span>Verify Payment</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 06: Verifying Payment -->
+        <div id="screen-verifying" class="screen-card">
+            <div class="step-label">06 VERIFYING PAYMENT</div>
+            
+            <div class="loader-container">
+                <div class="circular-loader"></div>
+            </div>
+            
+            <h1 class="screen-heading">Verifying your payment</h1>
+            <p class="screen-subtext">Please wait while we confirm your transaction...</p>
+            
+            <div class="checklist">
+                <div class="checklist-item active">
+                    <i data-lucide="check-circle"></i>
+                    <span>Checking UTR</span>
+                </div>
+                <div class="checklist-item">
+                    <i data-lucide="check-circle"></i>
+                    <span>Verifying Amount</span>
+                </div>
+                <div class="checklist-item">
+                    <i data-lucide="check-circle"></i>
+                    <span>Confirming Payment</span>
+                </div>
+                <div class="checklist-item">
+                    <i data-lucide="check-circle"></i>
+                    <span>Updating Records</span>
+                </div>
+            </div>
+            
+            <p class="small-text">This may take a few seconds.</p>
+            
+            <button class="ghost-button" id="cancel-verification-btn">
+                Cancel Verification
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 06B: Payment Failed -->
+        <div id="screen-payment-failed" class="screen-card">
+            <div class="step-label">06B PAYMENT FAILED</div>
+            
+            <div class="status-icon error">
+                <i data-lucide="x-circle"></i>
+            </div>
+            
+            <h1 class="screen-heading">Payment Verification Failed</h1>
+            <p class="screen-subtext">We couldn't verify your payment. Please check and try again.</p>
+            
+            <div class="glass-card error-reasons" id="error-reasons"></div>
+            
+            <button class="gold-button" id="try-again-btn">
+                <span>Try Again</span>
+                <i data-lucide="rotate-ccw"></i>
+            </button>
+            
+            <button class="ghost-button" id="change-workshop-btn">
+                Change Workshop
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 07: Payment Success -->
+        <div id="screen-success" class="screen-card">
+            <div class="step-label">07 PAYMENT SUCCESS</div>
+            
+            <div class="status-icon success large">
+                <i data-lucide="check-circle"></i>
+            </div>
+            
+            <h1 class="screen-heading">Payment Successful!</h1>
+            <p class="screen-subtext">Your payment has been verified. You're all set!</p>
+            
+            <div class="glass-card payment-details" id="success-payment-details"></div>
+            
+            <button class="gold-button" id="download-ticket-btn">
+                <span>Download Entry Ticket</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <button class="ghost-button" id="pay-another-btn" style="display: none;">
+                Pay for Another Workshop
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+
+        <!-- Screen 08: Entry Ticket -->
+        <div id="screen-ticket" class="screen-card">
+            <div class="step-label">08 ENTRY TICKET</div>
+            
+            <h1 class="screen-heading">Your Entry Ticket</h1>
+            <p class="screen-subtext">Show this QR at the venue</p>
+            
+            <div class="ticket-container">
+                <div class="ticket-qr">
+                    <img id="ticket-qr-image" src="" alt="Entry Ticket QR" class="qr-image">
+                </div>
+            </div>
+            
+            <div class="glass-card ticket-details" id="ticket-details"></div>
+            
+            <button class="gold-button" id="download-qr-btn">
+                <span>Download QR Code</span>
+                <i data-lucide="download"></i>
+            </button>
+            
+            <button class="ghost-button" id="done-btn">
+                Done
+            </button>
+            
+            <button class="ghost-button" id="back-home-btn">
+                Back to Home
+            </button>
+            
+            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/store.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/screens/verify.js"></script>
+    <script src="assets/js/screens/registration.js"></script>
+    <script src="assets/js/screens/payment.js"></script>
+    <script src="assets/js/screens/success.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

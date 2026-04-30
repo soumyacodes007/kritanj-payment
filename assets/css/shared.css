@@ -1,0 +1,445 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+    /* Colors */
+    --bg-dark: #06100d;
+    --card-dark: rgba(5, 16, 13, 0.78);
+    --card-soft: rgba(10, 24, 18, 0.72);
+    --gold: #d8a84f;
+    --gold-light: #f6d88b;
+    --orange: #d96b24;
+    --green: #79c85a;
+    --red: #d94824;
+    --muted: #b9b29a;
+    --text: #f4ead2;
+    --border-gold: rgba(216, 168, 79, 0.55);
+    
+    /* Typography */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background-color: var(--bg-dark);
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(216, 168, 79, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(6, 16, 13, 0.85) 0%, rgba(6, 16, 13, 0.95) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   APP SHELL
+   ============================================ */
+.app-shell {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+}
+
+/* ============================================
+   SCREEN CARD
+   ============================================ */
+.screen-card {
+    display: none;
+    width: 100%;
+    max-width: 430px;
+    background: var(--card-dark);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(216, 168, 79, 0.1),
+                inset 0 1px 0 rgba(246, 216, 139, 0.1);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.screen-card.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.step-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.9;
+}
+
+.screen-heading {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.screen-subtext {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+}
+
+.tagline {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    opacity: 0.7;
+}
+
+/* ============================================
+   GLASS CARD
+   ============================================ */
+.glass-card {
+    background: var(--card-soft);
+    border: 1px solid rgba(216, 168, 79, 0.25);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(246, 216, 139, 0.05);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.gold-button {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bg-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(216, 168, 79, 0.3),
+                0 0 0 1px rgba(246, 216, 139, 0.5);
+}
+
+.gold-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(216, 168, 79, 0.4),
+                0 0 0 1px rgba(246, 216, 139, 0.7);
+}
+
+.gold-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.gold-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gold-button i {
+    width: 20px;
+    height: 20px;
+}
+
+.ghost-button {
+    width: 100%;
+    padding: 14px 24px;
+    background: transparent;
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gold);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: var(--spacing-md);
+}
+
+.ghost-button:hover {
+    background: rgba(216, 168, 79, 0.1);
+    border-color: var(--gold);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.9rem;
+    color: var(--gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: var(--spacing-lg);
+    padding: 0;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--gold-light);
+    gap: 12px;
+}
+
+.back-link i {
+    width: 16px;
+    height: 16px;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.text-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(5, 16, 13, 0.6);
+    border: 1px solid rgba(216, 168, 79, 0.3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.text-input::placeholder {
+    color: var(--muted);
+    opacity: 0.6;
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(5, 16, 13, 0.8);
+    box-shadow: 0 0 0 3px rgba(216, 168, 79, 0.1);
+}
+
+/* ============================================
+   STATUS ICONS
+   ============================================ */
+.status-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-icon.success {
+    background: rgba(121, 200, 90, 0.15);
+    border: 2px solid var(--green);
+}
+
+.status-icon.success::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(121, 200, 90, 0.2) 0%, transparent 70%);
+}
+
+.status-icon.error {
+    background: rgba(217, 72, 36, 0.15);
+    border: 2px solid var(--red);
+}
+
+.status-icon.error::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(217, 72, 36, 0.2) 0%, transparent 70%);
+}
+
+.status-icon.large {
+    width: 100px;
+    height: 100px;
+}
+
+.status-icon i {
+    width: 40px;
+    height: 40px;
+    color: inherit;
+    position: relative;
+    z-index: 1;
+}
+
+.status-icon.success i {
+    color: var(--green);
+}
+
+.status-icon.error i {
+    color: var(--red);
+}
+
+.status-icon.large i {
+    width: 50px;
+    height: 50px;
+}
+
+/* ============================================
+   PRIVACY TEXT
+   ============================================ */
+.privacy-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: var(--spacing-lg);
+}
+
+.privacy-text .lock-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+/* ============================================
+   SMALL TEXT
+   ============================================ */
+.small-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: var(--spacing-md);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+    .screen-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .screen-heading {
+        font-size: 1.75rem;
+    }
+    
+    .app-shell {
+        padding: var(--spacing-sm);
+    }
+}
+
+@media (min-width: 768px) {
+    .app-shell {
+        padding: var(--spacing-xl);
+    }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }

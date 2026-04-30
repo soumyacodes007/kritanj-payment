@@ -1,0 +1,63 @@
+/* ============================================
+   VERIFY SCREEN
+   ============================================ */
+
+.phone-input-group {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.country-code {
+    width: 80px;
+    padding: 14px 12px;
+    background: rgba(5, 16, 13, 0.6);
+    border: 1px solid rgba(216, 168, 79, 0.3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.country-code:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(5, 16, 13, 0.8);
+    box-shadow: 0 0 0 3px rgba(216, 168, 79, 0.1);
+}
+
+.phone-input {
+    flex: 1;
+    padding: 14px 16px;
+    background: rgba(5, 16, 13, 0.6);
+    border: 1px solid rgba(216, 168, 79, 0.3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.phone-input::placeholder {
+    color: var(--muted);
+    opacity: 0.6;
+}
+
+.phone-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(5, 16, 13, 0.8);
+    box-shadow: 0 0 0 3px rgba(216, 168, 79, 0.1);
+}
+
+/* Remove number input spinners */
+.phone-input::-webkit-outer-spin-button,
+.phone-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.phone-input[type=number] {
+    -moz-appearance: textfield;
+}
