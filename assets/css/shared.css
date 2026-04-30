@@ -56,7 +56,7 @@ body {
     font-family: var(--font-body);
     color: var(--text);
     background-color: var(--bg-dark);
-    background-image: url('../images/background.jpg');
+    background-image: url('../background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -86,10 +86,14 @@ body::before {
     position: relative;
     z-index: 1;
     min-height: 100vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: var(--spacing-md);
+    padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+    padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    overflow: hidden;
 }
 
 /* ============================================
@@ -99,19 +103,22 @@ body::before {
     display: none;
     width: 100%;
     max-width: 430px;
-    background: var(--card-dark);
-    border: 1px solid var(--border-gold);
+    height: fit-content;
+    max-height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    border: none;
     border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(216, 168, 79, 0.1),
-                inset 0 1px 0 rgba(246, 216, 139, 0.1);
+    padding: var(--spacing-md);
+    backdrop-filter: blur(0px);
+    box-shadow: none;
     animation: fadeIn 0.4s ease-out;
 }
 
 .screen-card.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @keyframes fadeIn {
@@ -130,39 +137,39 @@ body::before {
    ============================================ */
 .step-label {
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 1.5px;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
     opacity: 0.9;
 }
 
 .screen-heading {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     line-height: 1.2;
 }
 
 .screen-subtext {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.4;
 }
 
 .tagline {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 2px;
     color: var(--gold);
     text-align: center;
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-md);
     opacity: 0.7;
 }
 
@@ -173,7 +180,7 @@ body::before {
     background: var(--card-soft);
     border: 1px solid rgba(216, 168, 79, 0.25);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
                 inset 0 1px 0 rgba(246, 216, 139, 0.05);
@@ -270,25 +277,25 @@ body::before {
    FORM ELEMENTS
    ============================================ */
 .form-group {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .form-group label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--text);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .text-input {
     width: 100%;
-    padding: 14px 16px;
+    padding: 12px 14px;
     background: rgba(5, 16, 13, 0.6);
     border: 1px solid rgba(216, 168, 79, 0.3);
     border-radius: var(--radius-sm);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text);
     transition: var(--transition);
 }
@@ -309,9 +316,9 @@ body::before {
    STATUS ICONS
    ============================================ */
 .status-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--spacing-lg);
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -405,21 +412,46 @@ body::before {
    ============================================ */
 @media (max-width: 480px) {
     .screen-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-lg);
+        max-height: calc(100vh - 16px);
     }
     
     .screen-heading {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
     
     .app-shell {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs);
+    }
+    
+    .step-label {
+        font-size: 0.65rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .screen-subtext {
+        font-size: 0.85rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .tagline {
+        font-size: 0.6rem;
+        margin-top: var(--spacing-md);
     }
 }
 
 @media (min-width: 768px) {
     .app-shell {
         padding: var(--spacing-xl);
+    }
+    
+    .screen-card {
+        padding: var(--spacing-xl);
+    }
+    
+    .screen-heading {
+        font-size: 2rem;
     }
 }
 

@@ -1,0 +1,156 @@
+/* ============================================
+   PAYMENT SCREEN
+   ============================================ */
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    padding: var(--spacing-md);
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(216, 168, 79, 0.3);
+}
+
+.payment-summary {
+    margin-bottom: var(--spacing-xl);
+}
+
+.payment-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(216, 168, 79, 0.1);
+}
+
+.payment-summary .summary-row:last-child {
+    border-bottom: none;
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+    border-top: 1px solid rgba(216, 168, 79, 0.3);
+}
+
+.payment-summary .summary-row .label {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.payment-summary .summary-row .value {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.payment-summary .summary-row:last-child .label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.payment-summary .summary-row:last-child .value {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* ============================================
+   VERIFYING PAYMENT SCREEN
+   ============================================ */
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.circular-loader {
+    width: 80px;
+    height: 80px;
+    border: 4px solid rgba(216, 168, 79, 0.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.checklist {
+    margin: var(--spacing-xl) 0;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    color: var(--muted);
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+.checklist-item.active {
+    color: var(--gold);
+    opacity: 1;
+}
+
+.checklist-item.complete {
+    color: var(--green);
+    opacity: 1;
+}
+
+.checklist-item i {
+    width: 20px;
+    height: 20px;
+}
+
+.checklist-item span {
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   PAYMENT FAILED SCREEN
+   ============================================ */
+
+.error-reasons {
+    margin-bottom: var(--spacing-xl);
+}
+
+.error-reasons h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--spacing-md);
+}
+
+.error-reasons ul {
+    list-style: none;
+    padding: 0;
+}
+
+.error-reasons li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+    font-size: 0.9rem;
+    color: var(--red);
+}
+
+.error-reasons li::before {
+    content: '•';
+    color: var(--red);
+    font-weight: bold;
+    font-size: 1.2rem;
+}

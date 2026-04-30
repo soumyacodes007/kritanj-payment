@@ -1,0 +1,112 @@
+/* ============================================
+   SUCCESS & TICKET SCREENS
+   ============================================ */
+
+.payment-details {
+    margin-bottom: var(--spacing-xl);
+}
+
+.payment-details .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(216, 168, 79, 0.1);
+}
+
+.payment-details .detail-row:last-child {
+    border-bottom: none;
+}
+
+.payment-details .detail-row .label {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.payment-details .detail-row .value {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+    text-align: right;
+}
+
+/* ============================================
+   TICKET SCREEN
+   ============================================ */
+
+.ticket-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.ticket-qr {
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(216, 168, 79, 0.1) 0%, rgba(246, 216, 139, 0.05) 100%);
+    border: 2px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(216, 168, 79, 0.2),
+                inset 0 1px 0 rgba(246, 216, 139, 0.1);
+}
+
+.ticket-qr .qr-image {
+    width: 200px;
+    height: 200px;
+    padding: var(--spacing-md);
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+}
+
+.ticket-details {
+    margin-bottom: var(--spacing-xl);
+}
+
+.ticket-details .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(216, 168, 79, 0.1);
+}
+
+.ticket-details .detail-row:last-child {
+    border-bottom: none;
+}
+
+.ticket-details .detail-row .label {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.ticket-details .detail-row .value {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+    text-align: right;
+}
+
+.ticket-details .email-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    background: rgba(121, 200, 90, 0.08);
+    border: 1px solid rgba(121, 200, 90, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+.ticket-details .email-notice i {
+    width: 18px;
+    height: 18px;
+    color: var(--green);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ticket-details .email-notice span {
+    font-size: 0.85rem;
+    color: var(--green);
+    line-height: 1.5;
+}
