@@ -5,58 +5,58 @@
 .qr-container {
     display: flex;
     justify-content: center;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-sm) 0;
 }
 
 .qr-image {
-    width: 160px;
-    height: 160px;
-    padding: var(--spacing-sm);
+    width: 140px;
+    height: 140px;
+    padding: var(--spacing-xs);
     background: #ffffff;
-    border-radius: var(--radius-md);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
                 0 0 0 1px rgba(216, 168, 79, 0.3);
 }
 
 .payment-summary {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .payment-summary .summary-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-xs) 0;
+    padding: 6px 0;
     border-bottom: 1px solid rgba(216, 168, 79, 0.1);
 }
 
 .payment-summary .summary-row:last-child {
     border-bottom: none;
-    padding-top: var(--spacing-sm);
-    margin-top: var(--spacing-xs);
+    padding-top: var(--spacing-xs);
+    margin-top: 4px;
     border-top: 1px solid rgba(216, 168, 79, 0.3);
 }
 
 .payment-summary .summary-row .label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--muted);
 }
 
 .payment-summary .summary-row .value {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text);
     font-weight: 500;
 }
 
 .payment-summary .summary-row:last-child .label {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text);
 }
 
 .payment-summary .summary-row:last-child .value {
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--gold);
 }

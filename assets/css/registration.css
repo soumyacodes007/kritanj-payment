@@ -130,12 +130,14 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-md);
 }
 
 .payment-option-title {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    flex: 1;
 }
 
 .payment-option-title i {
@@ -155,6 +157,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--gold);
+    margin-right: 40px;
 }
 
 .payment-option-badge {
