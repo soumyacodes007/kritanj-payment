@@ -21,7 +21,7 @@ const CONFIG = {
     },
 
     // Registration Form URL
-    REGISTRATION_URL: 'https://forms.google.com/your-form-url',
+    REGISTRATION_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdOQwFepNT-xvnBgdwu4Sn44AN4G8Bh3BVKSexn6tbqGyPFow/viewform',
 
     // Animation Delays
     ANIMATION_DELAY: 300,
