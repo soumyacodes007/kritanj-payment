@@ -43,35 +43,27 @@ const API = {
     async processPayment(phone, utr, workshop) {
         try {
             const url = CONFIG.getApiUrl('/pay');
-            
+
             const response = await fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    phone: phone,
-                    utr: utr,
-                    workshop: workshop
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone, utr, workshop })
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Payment verification failed');
+                // Return full API body as details so renderError can read expected_amount etc.
+                return {
+                    success: false,
+                    error: data.error || 'Payment verification failed',
+                    details: data
+                };
             }
 
-            return {
-                success: true,
-                data: data
-            };
+            return { success: true, data };
         } catch (error) {
-            return {
-                success: false,
-                error: error.message,
-                details: error.response || null
-            };
+            return { success: false, error: error.message, details: null };
         }
     },
 

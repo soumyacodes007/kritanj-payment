@@ -18,6 +18,96 @@
                 0 0 0 1px rgba(216, 168, 79, 0.3);
 }
 
+/* ============================================
+   UPI SECTION
+   ============================================ */
+
+.upi-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(216, 168, 79, 0.05);
+    border: 1px solid rgba(216, 168, 79, 0.2);
+    border-radius: var(--radius-sm);
+    margin: var(--spacing-sm) 0;
+}
+
+.upi-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+}
+
+.upi-id-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.upi-id {
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    word-break: break-all;
+    text-align: center;
+}
+
+.upi-copy-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: rgba(216, 168, 79, 0.1);
+    border: 1px solid var(--border-gold);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--gold);
+    transition: var(--transition);
+}
+
+.upi-copy-btn:hover {
+    background: rgba(216, 168, 79, 0.2);
+}
+
+.upi-copy-btn.copied {
+    background: rgba(121, 200, 90, 0.15);
+    border-color: rgba(121, 200, 90, 0.4);
+    color: var(--green);
+}
+
+.upi-copy-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+.upi-exact-note {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--orange);
+    text-align: center;
+}
+
+.upi-exact-note i {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   PAYMENT SUMMARY
+   ============================================ */
+
 .payment-summary {
     margin-bottom: var(--spacing-sm);
 }

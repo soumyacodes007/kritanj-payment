@@ -149,14 +149,28 @@
             <div class="qr-container">
                 <img src="assets/image.png" alt="Payment QR Code" class="qr-image">
             </div>
-            
+
+            <div class="upi-section">
+                <span class="upi-label">UPI ID</span>
+                <div class="upi-id-row">
+                    <span class="upi-id" id="upi-id-text">BHARATPE.9I0T0C0F8L746868@unitype</span>
+                    <button class="upi-copy-btn" id="copy-upi-btn" title="Copy UPI ID">
+                        <i data-lucide="copy"></i>
+                    </button>
+                </div>
+                <p class="upi-exact-note">
+                    <i data-lucide="alert-triangle"></i>
+                    Pay the exact amount — no more, no less
+                </p>
+            </div>
+
             <div class="glass-card payment-summary" id="payment-summary"></div>
-            
+
             <div class="form-group">
                 <label for="utr-input">Enter UTR / Transaction ID</label>
                 <input type="text" id="utr-input" class="text-input" placeholder="Enter UTR (e.g. 123456789012)">
             </div>
-            
+
             <button class="gold-button" id="verify-payment-btn">
                 <span>Verify Payment</span>
                 <i data-lucide="arrow-right"></i>

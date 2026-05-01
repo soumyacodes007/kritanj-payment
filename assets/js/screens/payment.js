@@ -10,6 +10,7 @@ const PaymentScreen = {
         const cancelVerificationBtn = document.getElementById('cancel-verification-btn');
         const tryAgainBtn = document.getElementById('try-again-btn');
         const changeWorkshopBtn = document.getElementById('change-workshop-btn');
+        const copyUpiBtn = document.getElementById('copy-upi-btn');
 
         // Verify payment button
         if (verifyPaymentBtn) {
@@ -53,6 +54,29 @@ const PaymentScreen = {
             changeWorkshopBtn.addEventListener('click', () => {
                 UI.clearInput('utr-input');
                 App.goTo('screen-select-payment');
+            });
+        }
+
+        // Copy UPI ID
+        if (copyUpiBtn) {
+            copyUpiBtn.addEventListener('click', () => {
+                const upiId = document.getElementById('upi-id-text')?.textContent?.trim();
+                if (!upiId) return;
+                navigator.clipboard.writeText(upiId).then(() => {
+                    const icon = copyUpiBtn.querySelector('i');
+                    copyUpiBtn.classList.add('copied');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'check');
+                        lucide.createIcons();
+                    }
+                    setTimeout(() => {
+                        copyUpiBtn.classList.remove('copied');
+                        if (icon) {
+                            icon.setAttribute('data-lucide', 'copy');
+                            lucide.createIcons();
+                        }
+                    }, 2000);
+                });
             });
         }
     },
@@ -160,21 +184,20 @@ const PaymentScreen = {
 
         const reasons = [];
 
-        // Parse error message
+        const fmt = (v) => v ? `₹${parseFloat(v).toFixed(0)}` : 'N/A';
+
         if (errorMessage.includes('UTR not found')) {
-            reasons.push('UTR not found in payment records');
+            reasons.push('UTR not found in payment records — double-check the transaction ID');
         } else if (errorMessage.includes('Less amount paid')) {
-            reasons.push(`Less amount paid (Expected: ${details?.expected_amount || 'N/A'})`);
+            reasons.push(`Amount too low — you paid ${fmt(details?.paid_amount)}, expected ${fmt(details?.expected_amount)}. Please pay the exact amount.`);
         } else if (errorMessage.includes('Excess amount paid')) {
-            reasons.push(`Excess amount paid (Expected: ${details?.expected_amount || 'N/A'})`);
+            reasons.push(`Amount too high — you paid ${fmt(details?.paid_amount)}, expected ${fmt(details?.expected_amount)}. Please pay the exact amount.`);
         } else if (errorMessage.includes('not successful')) {
-            reasons.push('Payment transaction is not successful');
-        } else if (errorMessage.includes('already used')) {
-            reasons.push('UTR already used for another payment');
+            reasons.push('Payment transaction status is not successful — please try again');
+        } else if (errorMessage.includes('UTR already used') || errorMessage.includes('already used')) {
+            reasons.push('This UTR has already been used for another payment');
         } else if (errorMessage.includes('Already paid') || errorMessage.includes('already paid')) {
             reasons.push('Already paid for this workshop — check your email for the QR code');
-        } else if (errorMessage.includes('UTR already used')) {
-            reasons.push('This UTR has already been used for another payment');
         } else {
             reasons.push(errorMessage);
         }
