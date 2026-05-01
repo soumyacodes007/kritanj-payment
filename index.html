@@ -17,11 +17,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/shared.css?v=5">
-    <link rel="stylesheet" href="assets/css/verify.css?v=5">
-    <link rel="stylesheet" href="assets/css/registration.css?v=5">
-    <link rel="stylesheet" href="assets/css/payment.css?v=5">
-    <link rel="stylesheet" href="assets/css/success.css?v=5">
+    <link rel="stylesheet" href="assets/css/shared.css?v=6">
+    <link rel="stylesheet" href="assets/css/verify.css?v=6">
+    <link rel="stylesheet" href="assets/css/registration.css?v=6">
+    <link rel="stylesheet" href="assets/css/payment.css?v=6">
+    <link rel="stylesheet" href="assets/css/success.css?v=6">
 </head>
 <body>
     <div class="app-shell">
@@ -237,58 +237,58 @@
         <!-- Screen 07: Payment Success -->
         <div id="screen-success" class="screen-card">
             <div class="step-label">07 PAYMENT SUCCESS</div>
-            
-            <div class="status-icon success large">
+
+            <div class="status-icon success">
                 <i data-lucide="check-circle"></i>
             </div>
-            
+
             <h1 class="screen-heading">Payment Successful!</h1>
             <p class="screen-subtext">Your payment has been verified. You're all set!</p>
-            
+
             <div class="glass-card payment-details" id="success-payment-details"></div>
 
-            <!-- QR code — only shown right after a fresh payment -->
-            <div id="success-qr-container" style="display: none; text-align: center; margin-top: 20px;">
-                <p style="font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted, #888); margin-bottom: 12px;">Entry QR Code</p>
-                <div style="display: inline-block; background: #fff; border-radius: 10px; padding: 14px; line-height: 0;">
-                    <img id="success-qr-image" src="" alt="Entry QR Code" style="width: 180px; height: 180px; display: block;">
+            <!-- QR code — only shown right after a fresh payment (qr_data_uri exists) -->
+            <div class="qr-section" id="success-qr-container" style="display: none;">
+                <span class="qr-label">Entry QR Code</span>
+                <div class="qr-frame">
+                    <img id="success-qr-image" src="" alt="Entry QR Code" class="qr-image-inner">
                 </div>
-                <button class="ghost-button" id="download-qr-btn" style="margin-top: 12px;">
-                    <span>Save QR Code</span>
+                <button class="ghost-button qr-download-btn" id="download-qr-btn">
                     <i data-lucide="download"></i>
+                    <span>Save QR Code</span>
                 </button>
             </div>
 
-            <div class="success-notice" id="email-qr-notice" style="margin-top: 16px;">
+            <div class="success-notice" id="email-qr-notice">
                 <i data-lucide="mail"></i>
                 <div>
-                    <strong>QR code also sent to your email!</strong><br>
+                    <strong>QR code also sent to your email!</strong>
                     <span>Present this QR at the registration desk on event day.</span>
                 </div>
             </div>
-            
+
             <button class="ghost-button" id="pay-another-btn" style="display: none;">
                 Pay for Another Workshop
             </button>
-            
+
             <button class="ghost-button" id="done-btn">
                 Done
             </button>
-            
+
             <div class="tagline">GOOD VIBES. GREAT CODE.</div>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/config.js?v=5"></script>
-    <script src="assets/js/store.js?v=5"></script>
-    <script src="assets/js/ui.js?v=5"></script>
-    <script src="assets/js/api.js?v=5"></script>
-    <script src="assets/js/screens/verify.js?v=5"></script>
-    <script src="assets/js/screens/registration.js?v=5"></script>
-    <script src="assets/js/screens/payment.js?v=5"></script>
-    <script src="assets/js/screens/success.js?v=5"></script>
-    <script src="assets/js/app.js?v=5"></script>
+    <script src="assets/js/config.js?v=6"></script>
+    <script src="assets/js/store.js?v=6"></script>
+    <script src="assets/js/ui.js?v=6"></script>
+    <script src="assets/js/api.js?v=6"></script>
+    <script src="assets/js/screens/verify.js?v=6"></script>
+    <script src="assets/js/screens/registration.js?v=6"></script>
+    <script src="assets/js/screens/payment.js?v=6"></script>
+    <script src="assets/js/screens/success.js?v=6"></script>
+    <script src="assets/js/app.js?v=6"></script>
     
     <script>
         // Initialize Lucide icons

@@ -104,8 +104,12 @@ body::before {
     width: 100%;
     max-width: 430px;
     height: fit-content;
-    max-height: 100vh;
-    overflow: hidden;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* hide scrollbar across all browsers */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     background: transparent;
     border: none;
     border-radius: var(--radius-xl);
@@ -113,6 +117,10 @@ body::before {
     backdrop-filter: blur(0px);
     box-shadow: none;
     animation: fadeIn 0.4s ease-out;
+}
+
+.screen-card::-webkit-scrollbar {
+    display: none;
 }
 
 .screen-card.active {

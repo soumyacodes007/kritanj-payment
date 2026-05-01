@@ -1,9 +1,9 @@
 /* ============================================
-   SUCCESS & TICKET SCREENS
+   SUCCESS SCREEN
    ============================================ */
 
 .payment-details {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
 }
 
 .payment-details .detail-row {
@@ -19,85 +19,94 @@
 }
 
 .payment-details .detail-row .label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--muted);
 }
 
 .payment-details .detail-row .value {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text);
     font-weight: 500;
     text-align: right;
+    max-width: 60%;
+    word-break: break-all;
 }
 
 /* ============================================
-   TICKET SCREEN
+   QR SECTION (shown only after fresh payment)
    ============================================ */
 
-.ticket-container {
+.qr-section {
     display: flex;
-    justify-content: center;
-    margin: var(--spacing-xl) 0;
-}
-
-.ticket-qr {
-    padding: var(--spacing-lg);
-    background: linear-gradient(135deg, rgba(216, 168, 79, 0.1) 0%, rgba(246, 216, 139, 0.05) 100%);
-    border: 2px solid var(--border-gold);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(216, 168, 79, 0.2),
-                inset 0 1px 0 rgba(246, 216, 139, 0.1);
-}
-
-.ticket-qr .qr-image {
-    width: 200px;
-    height: 200px;
-    padding: var(--spacing-md);
-    background: #ffffff;
-    border-radius: var(--radius-sm);
-}
-
-.ticket-details {
-    margin-bottom: var(--spacing-xl);
-}
-
-.ticket-details .detail-row {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: var(--spacing-sm) 0;
-    border-bottom: 1px solid rgba(216, 168, 79, 0.1);
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
 }
 
-.ticket-details .detail-row:last-child {
-    border-bottom: none;
+.qr-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin: 0;
 }
 
-.ticket-details .detail-row .label {
-    font-size: 0.9rem;
-    color: var(--muted);
+.qr-frame {
+    background: linear-gradient(135deg, rgba(216, 168, 79, 0.08) 0%, rgba(246, 216, 139, 0.04) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(216, 168, 79, 0.12),
+                inset 0 1px 0 rgba(246, 216, 139, 0.06);
 }
 
-.ticket-details .detail-row .value {
-    font-size: 0.95rem;
-    color: var(--text);
-    font-weight: 500;
-    text-align: right;
+.qr-image-inner {
+    display: block;
+    /* Responsive: fills available width up to 160px, never overflows */
+    width: min(160px, calc(100vw - 160px));
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 10px;
 }
 
-.ticket-details .email-notice {
+.qr-download-btn {
+    /* Override ghost-button full-width + top-margin defaults */
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 10px 28px !important;
+    font-size: 0.9rem !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.qr-download-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+/* ============================================
+   SUCCESS NOTICE (email confirmation banner)
+   ============================================ */
+
+.success-notice {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md);
-    margin-top: var(--spacing-md);
-    background: rgba(121, 200, 90, 0.08);
-    border: 1px solid rgba(121, 200, 90, 0.3);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(121, 200, 90, 0.07);
+    border: 1px solid rgba(121, 200, 90, 0.25);
     border-radius: var(--radius-sm);
+    margin-top: var(--spacing-sm);
 }
 
-.ticket-details .email-notice i {
+.success-notice > i {
     width: 18px;
     height: 18px;
     color: var(--green);
@@ -105,8 +114,20 @@
     margin-top: 2px;
 }
 
-.ticket-details .email-notice span {
+.success-notice > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.success-notice strong {
+    display: block;
     font-size: 0.85rem;
     color: var(--green);
-    line-height: 1.5;
+    margin-bottom: 2px;
+}
+
+.success-notice span {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
 }
