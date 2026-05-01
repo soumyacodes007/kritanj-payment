@@ -6,18 +6,16 @@ const RegistrationScreen = {
     init() {
         const viewPaymentBtn = document.getElementById('view-payment-btn');
         const backToDetailsBtn = document.getElementById('back-to-details');
+        const doneFromRegBtn = document.getElementById('done-from-reg-btn');
 
-        // View payment options button
+        // View payment options button — only reachable when there are pending workshops
         if (viewPaymentBtn) {
             viewPaymentBtn.addEventListener('click', () => {
                 if (store.hasUnpaidWorkshops()) {
                     this.renderPaymentOptions();
                     App.goTo('screen-select-payment');
-                } else {
-                    // All workshops paid, go to ticket
-                    App.goTo('screen-ticket');
-                    SuccessScreen.renderTicket();
                 }
+                // All paid: button is hidden, this never fires
             });
         }
 
@@ -25,6 +23,16 @@ const RegistrationScreen = {
         if (backToDetailsBtn) {
             backToDetailsBtn.addEventListener('click', () => {
                 App.goTo('screen-registration');
+            });
+        }
+
+        // Done / try another number from registration (all-paid state)
+        if (doneFromRegBtn) {
+            doneFromRegBtn.addEventListener('click', () => {
+                UI.clearInput('phone-input');
+                store.reset();
+                App.goTo('screen-verify');
+                UI.focusInput('phone-input');
             });
         }
     },
@@ -78,18 +86,23 @@ const RegistrationScreen = {
     updateButton() {
         const button = document.getElementById('view-payment-btn');
         const notice = document.getElementById('already-paid-notice');
+        const doneBtn = document.getElementById('done-from-reg-btn');
 
         if (!button || !notice) return;
 
-        if (store.hasUnpaidWorkshops()) {
+        if (store.isAllPaid()) {
+            // All workshops paid — hide pay button, show email notice + done
+            button.style.display = 'none';
+            notice.style.display = 'flex';
+            if (doneBtn) doneBtn.style.display = 'block';
+        } else {
+            // Pending payments exist
+            button.style.display = 'flex';
             button.innerHTML = '<span>View Payment Options</span><i data-lucide="arrow-right"></i>';
             notice.style.display = 'none';
-        } else {
-            button.innerHTML = '<span>View Entry Ticket</span><i data-lucide="arrow-right"></i>';
-            notice.style.display = 'flex';
+            if (doneBtn) doneBtn.style.display = 'none';
+            lucide.createIcons();
         }
-
-        lucide.createIcons();
     },
 
     renderPaymentOptions() {
@@ -98,7 +111,7 @@ const RegistrationScreen = {
 
         const options = [];
 
-        // Individual workshops
+        // Individual workshop options — always show all registered ones
         store.registeredWorkshops.forEach(workshop => {
             const isPaid = store.isWorkshopPaid(workshop);
             options.push({
@@ -106,20 +119,19 @@ const RegistrationScreen = {
                 name: UI.formatWorkshopName(workshop),
                 price: CONFIG.WORKSHOP_PRICES[workshop],
                 icon: workshop === 'vibe coding' ? 'code' : 'palette',
-                isPaid: isPaid,
+                isPaid,
                 isBestValue: false
             });
         });
 
-        // Both workshops option
+        // "Both" option — only if registered for both AND neither is paid yet
         if (store.canPayForBoth()) {
-            const bothPaid = store.isBothPaid();
             options.push({
                 id: 'both',
                 name: 'Both Workshops',
                 price: CONFIG.WORKSHOP_PRICES.both,
                 icon: 'gift',
-                isPaid: bothPaid,
+                isPaid: false,
                 isBestValue: true
             });
         }
@@ -137,16 +149,15 @@ const RegistrationScreen = {
                 ${option.isPaid ? `
                     <div class="payment-option-status paid">
                         <i data-lucide="check-circle"></i>
-                        <span>Already Paid</span>
+                        <span>Already Paid — check your email for QR</span>
                     </div>
                 ` : ''}
-                <div class="payment-option-radio"></div>
+                ${!option.isPaid ? '<div class="payment-option-radio"></div>' : ''}
             </div>
         `).join('');
 
         lucide.createIcons();
 
-        // Add click handlers
         this.attachPaymentOptionHandlers();
     },
 

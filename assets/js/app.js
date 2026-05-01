@@ -60,9 +60,6 @@ const App = {
             case 'screen-success':
                 SuccessScreen.render();
                 break;
-            case 'screen-ticket':
-                SuccessScreen.renderTicket();
-                break;
         }
     },
 

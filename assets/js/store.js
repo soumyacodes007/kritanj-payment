@@ -76,13 +76,19 @@ const store = {
     },
     
     canPayForBoth() {
-        return this.registeredWorkshops.length === 2 && 
-               this.registeredWorkshops.includes('vibe coding') && 
-               this.registeredWorkshops.includes('product design');
+        // Only offer "both" if registered for both AND neither has been paid yet.
+        return this.registeredWorkshops.length === 2 &&
+               this.registeredWorkshops.includes('vibe coding') &&
+               this.registeredWorkshops.includes('product design') &&
+               this.pendingWorkshops.length === 2;
     },
-    
+
     isBothPaid() {
-        return this.paidWorkshops.length === 2;
+        return this.paidWorkshops.includes('vibe coding') && this.paidWorkshops.includes('product design');
+    },
+
+    isAllPaid() {
+        return this.registeredWorkshops.length > 0 && this.pendingWorkshops.length === 0;
     }
 };
 

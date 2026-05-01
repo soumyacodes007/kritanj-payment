@@ -171,8 +171,10 @@ const PaymentScreen = {
             reasons.push('Payment transaction is not successful');
         } else if (errorMessage.includes('already used')) {
             reasons.push('UTR already used for another payment');
-        } else if (errorMessage.includes('Already paid')) {
-            reasons.push('Already paid for this workshop');
+        } else if (errorMessage.includes('Already paid') || errorMessage.includes('already paid')) {
+            reasons.push('Already paid for this workshop — check your email for the QR code');
+        } else if (errorMessage.includes('UTR already used')) {
+            reasons.push('This UTR has already been used for another payment');
         } else {
             reasons.push(errorMessage);
         }

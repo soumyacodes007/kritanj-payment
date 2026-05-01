@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>GDG on Campus - Workshop Registration</title>
     
     <!-- Fonts -->
@@ -14,11 +17,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/verify.css">
-    <link rel="stylesheet" href="assets/css/registration.css">
-    <link rel="stylesheet" href="assets/css/payment.css">
-    <link rel="stylesheet" href="assets/css/success.css">
+    <link rel="stylesheet" href="assets/css/shared.css?v=3">
+    <link rel="stylesheet" href="assets/css/verify.css?v=3">
+    <link rel="stylesheet" href="assets/css/registration.css?v=3">
+    <link rel="stylesheet" href="assets/css/payment.css?v=3">
+    <link rel="stylesheet" href="assets/css/success.css?v=3">
 </head>
 <body>
     <div class="app-shell">
@@ -91,12 +94,19 @@
             
             <div id="already-paid-notice" class="success-notice" style="display: none;">
                 <i data-lucide="check-circle"></i>
-                <span>Already paid for all registered workshops!</span>
+                <div>
+                    <strong>All workshops paid!</strong><br>
+                    <span>Your QR code was sent to your registered email. Check your inbox (and spam folder).</span>
+                </div>
             </div>
             
             <button class="gold-button" id="view-payment-btn">
                 <span>View Payment Options</span>
                 <i data-lucide="arrow-right"></i>
+            </button>
+            
+            <button class="ghost-button" id="done-from-reg-btn" style="display: none;">
+                Try a Different Number
             </button>
             
             <div class="tagline">GOOD VIBES. GREAT CODE.</div>
@@ -231,45 +241,21 @@
             <p class="screen-subtext">Your payment has been verified. You're all set!</p>
             
             <div class="glass-card payment-details" id="success-payment-details"></div>
-            
-            <button class="gold-button" id="download-ticket-btn">
-                <span>Download Entry Ticket</span>
-                <i data-lucide="arrow-right"></i>
-            </button>
+
+            <div class="success-notice" id="email-qr-notice" style="margin-top: 16px;">
+                <i data-lucide="mail"></i>
+                <div>
+                    <strong>QR code sent to your email!</strong><br>
+                    <span>Present the QR from your email at the registration desk on event day.</span>
+                </div>
+            </div>
             
             <button class="ghost-button" id="pay-another-btn" style="display: none;">
                 Pay for Another Workshop
             </button>
             
-            <div class="tagline">GOOD VIBES. GREAT CODE.</div>
-        </div>
-
-        <!-- Screen 08: Entry Ticket -->
-        <div id="screen-ticket" class="screen-card">
-            <div class="step-label">08 ENTRY TICKET</div>
-            
-            <h1 class="screen-heading">Your Entry Ticket</h1>
-            <p class="screen-subtext">Show this QR at the venue</p>
-            
-            <div class="ticket-container">
-                <div class="ticket-qr">
-                    <img id="ticket-qr-image" src="" alt="Entry Ticket QR" class="qr-image">
-                </div>
-            </div>
-            
-            <div class="glass-card ticket-details" id="ticket-details"></div>
-            
-            <button class="gold-button" id="download-qr-btn">
-                <span>Download QR Code</span>
-                <i data-lucide="download"></i>
-            </button>
-            
             <button class="ghost-button" id="done-btn">
                 Done
-            </button>
-            
-            <button class="ghost-button" id="back-home-btn">
-                Back to Home
             </button>
             
             <div class="tagline">GOOD VIBES. GREAT CODE.</div>
@@ -277,15 +263,15 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/store.js"></script>
-    <script src="assets/js/ui.js"></script>
-    <script src="assets/js/api.js"></script>
-    <script src="assets/js/screens/verify.js"></script>
-    <script src="assets/js/screens/registration.js"></script>
-    <script src="assets/js/screens/payment.js"></script>
-    <script src="assets/js/screens/success.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/config.js?v=3"></script>
+    <script src="assets/js/store.js?v=3"></script>
+    <script src="assets/js/ui.js?v=3"></script>
+    <script src="assets/js/api.js?v=3"></script>
+    <script src="assets/js/screens/verify.js?v=3"></script>
+    <script src="assets/js/screens/registration.js?v=3"></script>
+    <script src="assets/js/screens/payment.js?v=3"></script>
+    <script src="assets/js/screens/success.js?v=3"></script>
+    <script src="assets/js/app.js?v=3"></script>
     
     <script>
         // Initialize Lucide icons
