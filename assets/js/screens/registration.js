@@ -7,6 +7,7 @@ const RegistrationScreen = {
         const viewPaymentBtn = document.getElementById('view-payment-btn');
         const backToDetailsBtn = document.getElementById('back-to-details');
         const doneFromRegBtn = document.getElementById('done-from-reg-btn');
+        const backToVerifyBtn = document.getElementById('back-to-verify');
 
         // View payment options button — only reachable when there are pending workshops
         if (viewPaymentBtn) {
@@ -15,11 +16,10 @@ const RegistrationScreen = {
                     this.renderPaymentOptions();
                     App.goTo('screen-select-payment');
                 }
-                // All paid: button is hidden, this never fires
             });
         }
 
-        // Back to details button
+        // Back to details button (screen 04 → screen 03)
         if (backToDetailsBtn) {
             backToDetailsBtn.addEventListener('click', () => {
                 App.goTo('screen-registration');
@@ -29,6 +29,16 @@ const RegistrationScreen = {
         // Done / try another number from registration (all-paid state)
         if (doneFromRegBtn) {
             doneFromRegBtn.addEventListener('click', () => {
+                UI.clearInput('phone-input');
+                store.reset();
+                App.goTo('screen-verify');
+                UI.focusInput('phone-input');
+            });
+        }
+
+        // Back button on screen 03 → screen 01
+        if (backToVerifyBtn) {
+            backToVerifyBtn.addEventListener('click', () => {
                 UI.clearInput('phone-input');
                 store.reset();
                 App.goTo('screen-verify');
@@ -132,7 +142,7 @@ const RegistrationScreen = {
                 price: CONFIG.WORKSHOP_PRICES.both,
                 icon: 'gift',
                 isPaid: false,
-                isBestValue: true
+                isBestValue: false
             });
         }
 
@@ -163,36 +173,34 @@ const RegistrationScreen = {
 
     attachPaymentOptionHandlers() {
         const options = document.querySelectorAll('.payment-option:not(.paid)');
-        const proceedBtn = document.getElementById('proceed-to-pay-btn');
+
+        // Clone the proceed button to wipe any stacked listeners from prior renders.
+        const oldProceedBtn = document.getElementById('proceed-to-pay-btn');
+        const proceedBtn = oldProceedBtn.cloneNode(true);
+        oldProceedBtn.parentNode.replaceChild(proceedBtn, oldProceedBtn);
+
+        // Reset state — clear stale workshop selection and disable proceed.
+        store.selectedWorkshop = null;
+        store.currentPayment.workshop = null;
+        proceedBtn.disabled = true;
 
         options.forEach(option => {
             option.addEventListener('click', () => {
-                // Remove selection from all
                 options.forEach(opt => opt.classList.remove('selected'));
-
-                // Select this one
                 option.classList.add('selected');
 
-                // Store selection
                 const workshop = option.dataset.workshop;
                 store.selectWorkshop(workshop);
-
-                // Enable proceed button
-                if (proceedBtn) {
-                    proceedBtn.disabled = false;
-                }
+                proceedBtn.disabled = false;
             });
         });
 
-        // Proceed button
-        if (proceedBtn) {
-            proceedBtn.addEventListener('click', () => {
-                if (store.selectedWorkshop) {
-                    PaymentScreen.render();
-                    App.goTo('screen-payment');
-                }
-            });
-        }
+        proceedBtn.addEventListener('click', () => {
+            if (store.selectedWorkshop && !store.isWorkshopPaid(store.selectedWorkshop)) {
+                PaymentScreen.render();
+                App.goTo('screen-payment');
+            }
+        });
     }
 };
 

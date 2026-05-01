@@ -17,11 +17,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/shared.css?v=3">
-    <link rel="stylesheet" href="assets/css/verify.css?v=3">
-    <link rel="stylesheet" href="assets/css/registration.css?v=3">
-    <link rel="stylesheet" href="assets/css/payment.css?v=3">
-    <link rel="stylesheet" href="assets/css/success.css?v=3">
+    <link rel="stylesheet" href="assets/css/shared.css?v=4">
+    <link rel="stylesheet" href="assets/css/verify.css?v=4">
+    <link rel="stylesheet" href="assets/css/registration.css?v=4">
+    <link rel="stylesheet" href="assets/css/payment.css?v=4">
+    <link rel="stylesheet" href="assets/css/success.css?v=4">
 </head>
 <body>
     <div class="app-shell">
@@ -79,6 +79,11 @@
 
         <!-- Screen 03: Registration Found -->
         <div id="screen-registration" class="screen-card">
+            <button class="back-link" id="back-to-verify">
+                <i data-lucide="arrow-left"></i>
+                <span>Back</span>
+            </button>
+
             <div class="step-label">03 REGISTRATION FOUND</div>
             
             <div class="status-icon success">
@@ -242,11 +247,23 @@
             
             <div class="glass-card payment-details" id="success-payment-details"></div>
 
+            <!-- QR code — only shown right after a fresh payment -->
+            <div id="success-qr-container" style="display: none; text-align: center; margin-top: 20px;">
+                <p style="font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted, #888); margin-bottom: 12px;">Entry QR Code</p>
+                <div style="display: inline-block; background: #fff; border-radius: 10px; padding: 14px; line-height: 0;">
+                    <img id="success-qr-image" src="" alt="Entry QR Code" style="width: 180px; height: 180px; display: block;">
+                </div>
+                <button class="ghost-button" id="download-qr-btn" style="margin-top: 12px;">
+                    <span>Save QR Code</span>
+                    <i data-lucide="download"></i>
+                </button>
+            </div>
+
             <div class="success-notice" id="email-qr-notice" style="margin-top: 16px;">
                 <i data-lucide="mail"></i>
                 <div>
-                    <strong>QR code sent to your email!</strong><br>
-                    <span>Present the QR from your email at the registration desk on event day.</span>
+                    <strong>QR code also sent to your email!</strong><br>
+                    <span>Present this QR at the registration desk on event day.</span>
                 </div>
             </div>
             
@@ -263,15 +280,15 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/config.js?v=3"></script>
-    <script src="assets/js/store.js?v=3"></script>
-    <script src="assets/js/ui.js?v=3"></script>
-    <script src="assets/js/api.js?v=3"></script>
-    <script src="assets/js/screens/verify.js?v=3"></script>
-    <script src="assets/js/screens/registration.js?v=3"></script>
-    <script src="assets/js/screens/payment.js?v=3"></script>
-    <script src="assets/js/screens/success.js?v=3"></script>
-    <script src="assets/js/app.js?v=3"></script>
+    <script src="assets/js/config.js?v=4"></script>
+    <script src="assets/js/store.js?v=4"></script>
+    <script src="assets/js/ui.js?v=4"></script>
+    <script src="assets/js/api.js?v=4"></script>
+    <script src="assets/js/screens/verify.js?v=4"></script>
+    <script src="assets/js/screens/registration.js?v=4"></script>
+    <script src="assets/js/screens/payment.js?v=4"></script>
+    <script src="assets/js/screens/success.js?v=4"></script>
+    <script src="assets/js/app.js?v=4"></script>
     
     <script>
         // Initialize Lucide icons

@@ -6,8 +6,8 @@ const SuccessScreen = {
     init() {
         const payAnotherBtn = document.getElementById('pay-another-btn');
         const doneBtn = document.getElementById('done-btn');
+        const downloadQRBtn = document.getElementById('download-qr-btn');
 
-        // Pay for another workshop
         if (payAnotherBtn) {
             payAnotherBtn.addEventListener('click', () => {
                 UI.clearInput('utr-input');
@@ -16,16 +16,25 @@ const SuccessScreen = {
             });
         }
 
-        // Done button
         if (doneBtn) {
             doneBtn.addEventListener('click', () => {
                 this.handleDone();
+            });
+        }
+
+        if (downloadQRBtn) {
+            downloadQRBtn.addEventListener('click', () => {
+                const qrImage = document.getElementById('success-qr-image');
+                if (qrImage && qrImage.src) {
+                    UI.downloadQR(qrImage, `entry-qr-${store.phone}.png`);
+                }
             });
         }
     },
 
     render() {
         this.renderPaymentDetails();
+        this.renderQR();
         this.updatePayAnotherButton();
     },
 
@@ -57,6 +66,22 @@ const SuccessScreen = {
                 <span class="value">${store.currentPayment.utr}</span>
             </div>
         `;
+    },
+
+    renderQR() {
+        const qrContainer = document.getElementById('success-qr-container');
+        const qrImage = document.getElementById('success-qr-image');
+
+        if (!qrContainer || !qrImage) return;
+
+        const dataUri = store.paymentResult?.qr_data_uri;
+        if (dataUri) {
+            qrImage.src = dataUri;
+            qrContainer.style.display = 'block';
+            lucide.createIcons();
+        } else {
+            qrContainer.style.display = 'none';
+        }
     },
 
     updatePayAnotherButton() {
